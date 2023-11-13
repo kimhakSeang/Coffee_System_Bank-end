@@ -1,12 +1,12 @@
 package com.coffee.system.model;
 
 import java.util.Date;
-import java.util.List;
+
+import com.coffee.system.util.CurrencyEnum;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -17,11 +17,8 @@ public class ExchangeRate {
 	@Id
 	@GeneratedValue
 	private int id;
-	
 	private Date date;
-//	private 
+	private CurrencyEnum currencyEnum;
 	private double rate;
-	@OneToMany
-	private List<Payment> payments;
 }
 
