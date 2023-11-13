@@ -1,18 +1,17 @@
-package com.coffee.system.model;
+package com.coffee.system.util;
 
-public enum CurrencyInfo {
+public enum CurrencyEnum {
 	
 	USD(1, "USD", "$"),
 	KHR(1, "USD", "៛"),
 	EUR(1, "USD", "€"),
 	VND(1, "USD", "₫"),
-	THB(1, "THB", "฿"),
-	IDR(1, "USD", "Rp");
+	THB(1, "THB", "฿");
 	
 	private int code;
 	private String name, represent;
 	
-	CurrencyInfo(int code, String name , String represent){
+	CurrencyEnum(int code, String name , String represent){
 		this.code = code;
 		this.name = name;
 		this.represent = represent;

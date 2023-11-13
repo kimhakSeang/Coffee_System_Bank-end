@@ -17,7 +17,7 @@ import lombok.Data;
 public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 
 	@OneToMany
 	private List<PreOrder> orders;
