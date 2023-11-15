@@ -17,8 +17,6 @@ import com.coffee.system.util.ErrorUtil;
 public class DiscountServiceImpl implements DiscountService{
 	@Autowired
     private DiscountRepository discountRepository;
-	@Autowired
-	private DiscountMapper discountMapper;
     
 	@Override
 	public Discount getDiscountById(int id){
@@ -36,14 +34,17 @@ public class DiscountServiceImpl implements DiscountService{
 
 	@Override
 	public Discount insertDiscount(DiscountDto discountDto) {
-		
-		return null;
+		Discount discount = DiscountMapper.INSTANCE.toDiscount(discountDto);
+		discountRepository.save(discount);
+		return discount;
 	}
 
 	@Override
 	public Discount updateDiscount(int id, DiscountDto discountDto) {
-		
-		return null;
+		getDiscountById(id);
+		Discount discount = DiscountMapper.INSTANCE.toDiscount(discountDto);
+		discount.setId(id);
+		return discountRepository.save(discount);
 	}
 	@Override
 	public String deleteDiscount(int id) {

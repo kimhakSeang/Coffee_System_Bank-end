@@ -1,14 +1,19 @@
 package com.coffee.system.service;
 
+import java.util.List;
+
 import com.coffee.system.model.Item;
+import com.coffee.system.model.dto.ItemDto;
 
 public interface ItemService {
 
     Item getItemById(int id);
     
-    Item insertItem(Item item);
+    List<Item> getItemList();
     
-    Item updateItem(Item item);
+    Item insertItem(ItemDto itemDto);
+    
+    Item updateItem(int id, ItemDto itemDto);
     
     String deleteItem(int id);
 }

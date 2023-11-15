@@ -1,12 +1,15 @@
 package com.coffee.system.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coffee.system.exception.RuntimeExceptionImpl;
+import com.coffee.system.mapper.InvoiceMapper;
 import com.coffee.system.model.Invoice;
+import com.coffee.system.model.dto.InvoiceDto;
 import com.coffee.system.repository.InvoiceRepository;
 import com.coffee.system.service.InvoiceService;
 import com.coffee.system.util.ErrorUtil;
@@ -23,18 +26,26 @@ public class InvoiceServiceImpl implements InvoiceService{
 		}
 		return invoice.get();
 	}
-
+	
 	@Override
-	public Invoice insertInvoice(Invoice invoice) {
-		return invoiceRepository.save(invoice);
+	public List<Invoice> getInvoiceList() {
+		return invoiceRepository.findAll();
 	}
 
 	@Override
-	public Invoice updateInvoice(Invoice invoice) {
-		getInvoiceById(invoice.getId());
-		return invoiceRepository.save(invoice);
+	public Invoice insertInvoice(InvoiceDto invoiceDto) {
+		Invoice invoice = InvoiceMapper.INSTANCE.toInvoice(invoiceDto);
+		invoiceRepository.save(invoice);
+		return invoice;
 	}
 
+	@Override
+	public Invoice updateInvoice(int id, InvoiceDto invoiceDto) {
+		getInvoiceById(id);
+		Invoice invoice = InvoiceMapper.INSTANCE.toInvoice(invoiceDto);
+		invoice.setId(id);
+		return invoiceRepository.save(invoice);
+	}
 	@Override
 	public String deleteInvoice(int id) {
 		getInvoiceById(id);
