@@ -1,14 +1,19 @@
 package com.coffee.system.service;
 
+import java.util.List;
+
 import com.coffee.system.model.ExchangeRate;
+import com.coffee.system.model.dto.ExchangeRateDto;
 
 public interface ExchangeRateService {
 
     ExchangeRate getExchangeRateById(int id);
     
-    ExchangeRate insertExchangeRate(ExchangeRate exchangeRate);
+    List<ExchangeRate> getExchangeRateList();
     
-    ExchangeRate updateExchangeRate(ExchangeRate exchangeRate);
+    ExchangeRate insertExchangeRate(ExchangeRateDto exchangeRateDto);
+    
+    ExchangeRate updateExchangeRate(int id, ExchangeRateDto exchangeRateDto);
     
     String deleteExchangeRate(int id);
 }

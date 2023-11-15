@@ -1,12 +1,15 @@
 package com.coffee.system.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coffee.system.exception.RuntimeExceptionImpl;
+import com.coffee.system.mapper.ItemMapper;
 import com.coffee.system.model.Item;
+import com.coffee.system.model.dto.ItemDto;
 import com.coffee.system.repository.ItemRepository;
 import com.coffee.system.service.ItemService;
 import com.coffee.system.util.ErrorUtil;
@@ -23,18 +26,26 @@ public class ItemServiceImpl implements ItemService{
 		}
 		return item.get();
 	}
-
+	
 	@Override
-	public Item insertItem(Item item) {
-		return itemRepository.save(item);
+	public List<Item> getItemList() {
+		return itemRepository.findAll();
 	}
 
 	@Override
-	public Item updateItem(Item item) {
-		getItemById(item.getId());
-		return itemRepository.save(item);
+	public Item insertItem(ItemDto itemDto) {
+		Item item = ItemMapper.INSTANCE.toItem(itemDto);
+		itemRepository.save(item);
+		return item;
 	}
 
+	@Override
+	public Item updateItem(int id, ItemDto itemDto) {
+		getItemById(id);
+		Item item = ItemMapper.INSTANCE.toItem(itemDto);
+		item.setId(id);
+		return itemRepository.save(item);
+	}
 	@Override
 	public String deleteItem(int id) {
 		getItemById(id);

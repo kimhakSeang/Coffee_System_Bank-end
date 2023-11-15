@@ -1,12 +1,15 @@
 package com.coffee.system.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coffee.system.exception.RuntimeExceptionImpl;
+import com.coffee.system.mapper.ExchangeRateMapper;
 import com.coffee.system.model.ExchangeRate;
+import com.coffee.system.model.dto.ExchangeRateDto;
 import com.coffee.system.repository.ExchangeRateRepository;
 import com.coffee.system.service.ExchangeRateService;
 import com.coffee.system.util.ErrorUtil;
@@ -23,18 +26,27 @@ public class ExchangeRateServiceImpl implements ExchangeRateService{
 		}
 		return exchangeRate.get();
 	}
-
+	
 	@Override
-	public ExchangeRate insertExchangeRate(ExchangeRate exchangeRate) {
-		return exchangeRateRepository.save(exchangeRate);
+	public List<ExchangeRate> getExchangeRateList() {
+		return exchangeRateRepository.findAll();
 	}
 
 	@Override
-	public ExchangeRate updateExchangeRate(ExchangeRate exchangeRate) {
-		getExchangeRateById(exchangeRate.getId());
-		return exchangeRateRepository.save(exchangeRate);
+	public ExchangeRate insertExchangeRate(ExchangeRateDto exchangeRateDto) {
+		ExchangeRate exchangeRate = ExchangeRateMapper.INSTANCE.toExchangeRate(exchangeRateDto);
+		exchangeRateRepository.save(exchangeRate);
+		return exchangeRate;
 	}
 
+	@Override
+	public ExchangeRate updateExchangeRate(int id, ExchangeRateDto exchangeRateDto) {
+		getExchangeRateById(id);
+		ExchangeRate exchangeRate = ExchangeRateMapper.INSTANCE.toExchangeRate(exchangeRateDto);
+		exchangeRate.setId(id);
+		return exchangeRateRepository.save(exchangeRate);
+	}
+	
 	@Override
 	public String deleteExchangeRate(int id) {
 		getExchangeRateById(id);

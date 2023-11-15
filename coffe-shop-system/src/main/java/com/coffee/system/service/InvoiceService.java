@@ -1,14 +1,19 @@
 package com.coffee.system.service;
 
+import java.util.List;
+
 import com.coffee.system.model.Invoice;
+import com.coffee.system.model.dto.InvoiceDto;
 
 public interface InvoiceService {
 
-	Invoice getInvoiceById(int id);
+    Invoice getInvoiceById(int id);
     
-    Invoice insertInvoice(Invoice invoice);
+    List<Invoice> getInvoiceList();
     
-    Invoice updateInvoice(Invoice invoice);
+    Invoice insertInvoice(InvoiceDto invoiceDto);
+    
+    Invoice updateInvoice(int id, InvoiceDto invoiceDto);
     
     String deleteInvoice(int id);
 }

@@ -1,44 +1,55 @@
 package com.coffee.system.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coffee.system.exception.RuntimeExceptionImpl;
+import com.coffee.system.mapper.PreOrderMapper;
 import com.coffee.system.model.PreOrder;
+import com.coffee.system.model.dto.PreOrderDto;
 import com.coffee.system.repository.PreOrderRepository;
 import com.coffee.system.service.PreOrderService;
 import com.coffee.system.util.ErrorUtil;
 @Service
 public class PreOrderServiceImpl implements PreOrderService{
 	@Autowired
-    private PreOrderRepository PreOrderRepository;
+    private PreOrderRepository preOrderRepository;
     
 	@Override
 	public PreOrder getPreOrderById(int id){
-		Optional<PreOrder> PreOrder= PreOrderRepository.findById(id);
-		if(PreOrder.isEmpty()) {
+		Optional<PreOrder> preOrder= preOrderRepository.findById(id);
+		if(preOrder.isEmpty()) {
 			throw new RuntimeExceptionImpl(ErrorUtil.NOT_FOUND,"PreOrder's id("+id+") not found!");
 		}
-		return PreOrder.get();
+		return preOrder.get();
+	}
+	
+	@Override
+	public List<PreOrder> getPreOrderList() {
+		return preOrderRepository.findAll();
 	}
 
 	@Override
-	public PreOrder insertPreOrder(PreOrder PreOrder) {
-		return PreOrderRepository.save(PreOrder);
+	public PreOrder insertPreOrder(PreOrderDto preOrderDto) {
+		PreOrder PreOrder = PreOrderMapper.INSTANCE.toPreOrder(preOrderDto);
+		preOrderRepository.save(PreOrder);
+		return PreOrder;
 	}
 
 	@Override
-	public PreOrder updatePreOrder(PreOrder PreOrder) {
-		getPreOrderById(PreOrder.getId());
-		return PreOrderRepository.save(PreOrder);
+	public PreOrder updatePreOrder(int id, PreOrderDto preOrderDto) {
+		getPreOrderById(id);
+		PreOrder preOrder = PreOrderMapper.INSTANCE.toPreOrder(preOrderDto);
+		preOrder.setId(id);
+		return preOrderRepository.save(preOrder);
 	}
-
 	@Override
 	public String deletePreOrder(int id) {
 		getPreOrderById(id);
-		PreOrderRepository.deleteById(id);
+		preOrderRepository.deleteById(id);
 		return "Delete Success.";
 	}
 }

@@ -6,5 +6,5 @@ import lombok.Data;
 public class CustomerDto {
 	private String name;
 	private String gender;
-	private int custCount;
+	private int count;
 }

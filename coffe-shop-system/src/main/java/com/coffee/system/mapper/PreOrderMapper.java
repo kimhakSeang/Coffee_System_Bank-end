@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
 
 import com.coffee.system.model.Customer;
 import com.coffee.system.model.Item;
@@ -18,6 +19,8 @@ import com.coffee.system.service.ItemService;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
 uses = { CustomerService.class, ItemService.class} )
 public interface PreOrderMapper {
+	
+	PreOrderMapper INSTANCE = Mappers.getMapper(PreOrderMapper.class);
 	
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "customers", source = "customersId")
