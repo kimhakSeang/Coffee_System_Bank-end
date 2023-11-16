@@ -1,23 +1,23 @@
-package com.coffee.system.model;
-
-import java.util.List;
+package com.coffee.system.model.system;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "menu")
-public class Menu {
+@Table(name = "invoice")
+public class Invoice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToMany
-	private List<Item> items;
-
+	
+	@OneToOne
+	private Payment payment;
+	
+	private String content;
 }

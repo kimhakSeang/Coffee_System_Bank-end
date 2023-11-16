@@ -5,8 +5,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
-import com.coffee.system.model.Discount;
 import com.coffee.system.model.dto.DiscountDto;
+import com.coffee.system.model.system.Discount;
 import com.coffee.system.service.PaymentService;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = PaymentService.class)

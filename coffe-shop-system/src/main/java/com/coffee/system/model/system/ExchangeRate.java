@@ -1,4 +1,4 @@
-package com.coffee.system.model;
+package com.coffee.system.model.system;
 
 import java.util.Date;
 

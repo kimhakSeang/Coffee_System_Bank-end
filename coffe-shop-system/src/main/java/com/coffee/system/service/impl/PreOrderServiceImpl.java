@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.mapper.PreOrderMapper;
-import com.coffee.system.model.PreOrder;
 import com.coffee.system.model.dto.PreOrderDto;
+import com.coffee.system.model.system.PreOrder;
 import com.coffee.system.repository.PreOrderRepository;
 import com.coffee.system.service.PreOrderService;
 import com.coffee.system.util.ErrorUtil;

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.coffee.system.model.Invoice;
 import com.coffee.system.model.dto.InvoiceDto;
+import com.coffee.system.model.system.Invoice;
 import com.coffee.system.service.InvoiceService;
 
 @RestController

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.mapper.ExchangeRateMapper;
-import com.coffee.system.model.ExchangeRate;
 import com.coffee.system.model.dto.ExchangeRateDto;
+import com.coffee.system.model.system.ExchangeRate;
 import com.coffee.system.repository.ExchangeRateRepository;
 import com.coffee.system.service.ExchangeRateService;
 import com.coffee.system.util.ErrorUtil;

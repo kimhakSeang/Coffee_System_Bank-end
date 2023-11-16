@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.coffee.system.model.PreOrder;
 import com.coffee.system.model.dto.PreOrderDto;
+import com.coffee.system.model.system.PreOrder;
 import com.coffee.system.service.PreOrderService;
 
 @RestController

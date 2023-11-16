@@ -2,8 +2,8 @@ package com.coffee.system.service;
 
 import java.util.List;
 
-import com.coffee.system.model.Menu;
 import com.coffee.system.model.dto.MenuDto;
+import com.coffee.system.model.system.Menu;
 
 public interface MenuService {
 

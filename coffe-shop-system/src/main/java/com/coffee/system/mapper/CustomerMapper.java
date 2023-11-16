@@ -5,8 +5,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
-import com.coffee.system.model.Customer;
 import com.coffee.system.model.dto.CustomerDto;
+import com.coffee.system.model.system.Customer;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CustomerMapper {
