@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.mapper.PaymentMapper;
-import com.coffee.system.model.Payment;
 import com.coffee.system.model.dto.PaymentDto;
+import com.coffee.system.model.system.Payment;
 import com.coffee.system.repository.PaymentRepository;
 import com.coffee.system.service.PaymentService;
 import com.coffee.system.util.ErrorUtil;

@@ -5,8 +5,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
-import com.coffee.system.model.Item;
 import com.coffee.system.model.dto.ItemDto;
+import com.coffee.system.model.system.Item;
 import com.coffee.system.service.CategoryService;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = CategoryService.class)

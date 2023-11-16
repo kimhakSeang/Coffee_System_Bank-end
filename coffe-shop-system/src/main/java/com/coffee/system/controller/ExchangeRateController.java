@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.coffee.system.model.ExchangeRate;
 import com.coffee.system.model.dto.ExchangeRateDto;
+import com.coffee.system.model.system.ExchangeRate;
 import com.coffee.system.service.ExchangeRateService;
 
 @RestController

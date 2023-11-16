@@ -8,10 +8,10 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
-import com.coffee.system.model.Customer;
-import com.coffee.system.model.Item;
-import com.coffee.system.model.PreOrder;
 import com.coffee.system.model.dto.PreOrderDto;
+import com.coffee.system.model.system.Customer;
+import com.coffee.system.model.system.Item;
+import com.coffee.system.model.system.PreOrder;
 import com.coffee.system.service.CustomerService;
 import com.coffee.system.service.ItemService;
 

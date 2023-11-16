@@ -5,8 +5,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
-import com.coffee.system.model.Payment;
 import com.coffee.system.model.dto.PaymentDto;
+import com.coffee.system.model.system.Payment;
 import com.coffee.system.service.DiscountService;
 import com.coffee.system.service.ExchangeRateService;
 import com.coffee.system.service.PreOrderService;

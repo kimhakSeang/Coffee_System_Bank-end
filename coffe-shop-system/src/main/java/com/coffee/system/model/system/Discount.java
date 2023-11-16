@@ -1,25 +1,24 @@
-package com.coffee.system.model;
+package com.coffee.system.model.system;
+
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "item")	
-public class Item {
-	
+@Table(name = "discount")
+public class Discount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
+	private double percent;
 	
-	@ManyToOne
-	private Category category;
-	
+	private Date fromDate;
+	private Date toDate;
 }

@@ -2,8 +2,8 @@ package com.coffee.system.service;
 
 import java.util.List;
 
-import com.coffee.system.model.Item;
 import com.coffee.system.model.dto.ItemDto;
+import com.coffee.system.model.system.Item;
 
 public interface ItemService {
 

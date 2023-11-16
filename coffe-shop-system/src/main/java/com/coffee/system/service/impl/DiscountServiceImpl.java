@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.mapper.DiscountMapper;
-import com.coffee.system.model.Discount;
 import com.coffee.system.model.dto.DiscountDto;
+import com.coffee.system.model.system.Discount;
 import com.coffee.system.repository.DiscountRepository;
 import com.coffee.system.service.DiscountService;
 import com.coffee.system.util.ErrorUtil;

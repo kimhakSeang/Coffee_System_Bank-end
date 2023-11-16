@@ -2,8 +2,8 @@ package com.coffee.system.service;
 
 import java.util.List;
 
-import com.coffee.system.model.Customer;
 import com.coffee.system.model.dto.CustomerDto;
+import com.coffee.system.model.system.Customer;
 
 public interface CustomerService {
 
