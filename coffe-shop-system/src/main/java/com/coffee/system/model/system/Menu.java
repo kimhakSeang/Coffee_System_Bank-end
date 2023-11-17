@@ -17,6 +17,9 @@ public class Menu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	private String menu;
+	
 	@OneToMany
 	private List<Item> items;
 

@@ -3,9 +3,8 @@ package com.coffee.system.model.dto;
 import lombok.Data;
 
 @Data
-public class ItemDto {
-
+public class RoleDto {
 	private String name;
-	private Integer categoryId;
-	private long price;
+	private String role;
+	private String useYN;
 }
