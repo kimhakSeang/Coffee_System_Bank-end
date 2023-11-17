@@ -1,7 +1,5 @@
 package com.coffee.system.model.system;
 
-import java.util.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,15 +9,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "discount")
-public class Discount {
+@Table(name = "matrl_category")
+public class MaterialCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private double percent;
+	private String name;
 	
-	private Date fromDate;
-	
-	private Date toDate;
 }

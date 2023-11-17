@@ -22,4 +22,6 @@ public class Item {
 	@ManyToOne
 	private Category category;
 	
+	private long price;
+	
 }

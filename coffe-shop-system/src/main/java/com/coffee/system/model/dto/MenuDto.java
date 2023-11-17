@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class MenuDto {
 
-	private int id;
+	private String name;
 	private List<Integer> itemId;
 
 }
