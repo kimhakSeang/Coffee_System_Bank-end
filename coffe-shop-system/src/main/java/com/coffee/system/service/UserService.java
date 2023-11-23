@@ -2,8 +2,8 @@ package com.coffee.system.service;
 
 import java.util.List;
 
+import com.coffee.system.config.security.model.User;
 import com.coffee.system.model.dto.UserDto;
-import com.coffee.system.model.user.User;
 
 public interface UserService {
 	

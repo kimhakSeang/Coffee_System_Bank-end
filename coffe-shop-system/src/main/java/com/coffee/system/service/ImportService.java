@@ -3,7 +3,7 @@ package com.coffee.system.service;
 import java.util.List;
 
 import com.coffee.system.model.dto.ImportDto;
-import com.coffee.system.model.system.Import;
+import com.coffee.system.model.entity.Import;
 
 public interface ImportService {
 

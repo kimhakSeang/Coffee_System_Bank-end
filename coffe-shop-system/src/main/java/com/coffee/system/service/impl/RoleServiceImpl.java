@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coffee.system.config.security.model.Role;
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.mapper.RoleMapper;
 import com.coffee.system.model.dto.RoleDto;
-import com.coffee.system.model.user.Role;
 import com.coffee.system.repository.RoleRepository;
 import com.coffee.system.service.RoleService;
 import com.coffee.system.util.ErrorUtil;

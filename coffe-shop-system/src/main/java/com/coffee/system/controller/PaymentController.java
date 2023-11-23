@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coffee.system.model.dto.PaymentDto;
-import com.coffee.system.model.system.Payment;
+import com.coffee.system.model.entity.Payment;
 import com.coffee.system.service.PaymentService;
 
 @RestController

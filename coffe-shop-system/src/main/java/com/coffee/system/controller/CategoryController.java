@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coffee.system.config.security.model.Role;
 import com.coffee.system.model.dto.CategoryDto;
-import com.coffee.system.model.system.Category;
+import com.coffee.system.model.dto.RoleDto;
+import com.coffee.system.model.entity.Category;
 import com.coffee.system.service.CategoryService;
 
 @RestController

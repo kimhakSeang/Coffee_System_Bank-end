@@ -3,7 +3,7 @@ package com.coffee.system.service;
 import java.util.List;
 
 import com.coffee.system.model.dto.CategoryDto;
-import com.coffee.system.model.system.Category;
+import com.coffee.system.model.entity.Category;
 
 public interface CategoryService {
 	

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coffee.system.model.dto.ItemDto;
-import com.coffee.system.model.system.Item;
+import com.coffee.system.model.entity.Item;
 import com.coffee.system.service.ItemService;
 
 @RestController

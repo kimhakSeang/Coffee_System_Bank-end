@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coffee.system.model.dto.ImportDto;
-import com.coffee.system.model.system.Import;
+import com.coffee.system.model.entity.Import;
 import com.coffee.system.service.ImportService;
 
 @RestController

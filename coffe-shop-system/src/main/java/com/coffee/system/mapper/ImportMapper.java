@@ -6,7 +6,7 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
 import com.coffee.system.model.dto.ImportDto;
-import com.coffee.system.model.system.Import;
+import com.coffee.system.model.entity.Import;
 import com.coffee.system.service.MaterialService;
 import com.coffee.system.service.UserService;
 
@@ -17,6 +17,10 @@ public interface ImportMapper {
 	@Mapping( target = "id", ignore = true)
 	@Mapping(target = "materials", source = "materialsId")
 	@Mapping(target = "user", source = "userId")
+	@Mapping(target = "createdBy", ignore = true)
+	@Mapping(target = "createdDate", ignore = true)
+	@Mapping(target = "modifiedBy", ignore = true)
+	@Mapping(target = "modifiedDate", ignore = true)
 	Import toImport(ImportDto importDto);
 	
 	ImportDto toImportDto(ImportDto importDto);

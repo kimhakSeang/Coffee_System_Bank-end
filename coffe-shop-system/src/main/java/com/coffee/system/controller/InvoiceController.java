@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coffee.system.model.dto.InvoiceDto;
-import com.coffee.system.model.system.Invoice;
+import com.coffee.system.model.entity.Invoice;
 import com.coffee.system.service.InvoiceService;
 
 @RestController

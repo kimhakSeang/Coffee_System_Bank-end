@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coffee.system.config.security.model.User;
 import com.coffee.system.model.dto.UserDto;
-import com.coffee.system.model.user.User;
 import com.coffee.system.service.UserService;
 
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
 	@Autowired
 	private UserService UserService;

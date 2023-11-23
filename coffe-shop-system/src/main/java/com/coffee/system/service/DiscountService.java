@@ -3,7 +3,7 @@ package com.coffee.system.service;
 import java.util.List;
 
 import com.coffee.system.model.dto.DiscountDto;
-import com.coffee.system.model.system.Discount;
+import com.coffee.system.model.entity.Discount;
 
 public interface DiscountService {
 

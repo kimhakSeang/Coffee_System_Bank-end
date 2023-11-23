@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.mapper.MenuMapper;
 import com.coffee.system.model.dto.MenuDto;
-import com.coffee.system.model.system.Menu;
+import com.coffee.system.model.entity.Menu;
 import com.coffee.system.repository.MenuRepository;
 import com.coffee.system.service.MenuService;
 import com.coffee.system.util.ErrorUtil;
