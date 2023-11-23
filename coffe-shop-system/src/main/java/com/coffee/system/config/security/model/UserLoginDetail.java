@@ -1,6 +1,8 @@
 package com.coffee.system.config.security.model;
 
 
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
