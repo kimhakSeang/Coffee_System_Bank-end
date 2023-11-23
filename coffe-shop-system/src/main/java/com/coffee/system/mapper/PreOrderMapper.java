@@ -9,9 +9,9 @@ import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 import com.coffee.system.model.dto.PreOrderDto;
-import com.coffee.system.model.system.Customer;
-import com.coffee.system.model.system.Item;
-import com.coffee.system.model.system.PreOrder;
+import com.coffee.system.model.entity.Customer;
+import com.coffee.system.model.entity.Item;
+import com.coffee.system.model.entity.PreOrder;
 import com.coffee.system.service.CustomerService;
 import com.coffee.system.service.ItemService;
 
@@ -25,6 +25,10 @@ public interface PreOrderMapper {
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "customers", source = "customersId")
 	@Mapping(target = "items", source = "itemsId")
+	@Mapping(target = "createdBy", ignore = true)
+	@Mapping(target = "createdDate", ignore = true)
+	@Mapping(target = "modifiedBy", ignore = true)
+	@Mapping(target = "modifiedDate", ignore = true)
 	PreOrder toPreOrder(PreOrderDto PreOrderDto);
 	
 	@Mapping(target = "customersId", source = "customers", qualifiedByName =  "toCustomersId")

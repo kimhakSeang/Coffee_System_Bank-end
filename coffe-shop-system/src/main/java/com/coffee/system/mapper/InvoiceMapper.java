@@ -6,7 +6,7 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
 import com.coffee.system.model.dto.InvoiceDto;
-import com.coffee.system.model.system.Invoice;
+import com.coffee.system.model.entity.Invoice;
 import com.coffee.system.service.PaymentService;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = PaymentService.class)
@@ -16,6 +16,10 @@ public interface InvoiceMapper {
 	
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "payment", source = "paymentId")
+	@Mapping(target = "createdBy", ignore = true)
+	@Mapping(target = "createdDate", ignore = true)
+	@Mapping(target = "modifiedBy", ignore = true)
+	@Mapping(target = "modifiedDate", ignore = true)
 	Invoice toInvoice(InvoiceDto invoiceDto);
 	
 	@Mapping(target = "paymentId", expression="java(invoice.getPayment().getId())")

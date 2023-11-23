@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coffee.system.config.security.model.User;
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.mapper.UserMapper;
 import com.coffee.system.model.dto.UserDto;
-import com.coffee.system.model.user.User;
 import com.coffee.system.repository.UserRepository;
 import com.coffee.system.service.UserService;
 import com.coffee.system.util.ErrorUtil;

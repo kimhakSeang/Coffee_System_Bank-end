@@ -6,7 +6,7 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
 import com.coffee.system.model.dto.PaymentDto;
-import com.coffee.system.model.system.Payment;
+import com.coffee.system.model.entity.Payment;
 import com.coffee.system.service.DiscountService;
 import com.coffee.system.service.ExchangeRateService;
 import com.coffee.system.service.PreOrderService;
@@ -20,6 +20,10 @@ public interface PaymentMapper {
 	@Mapping(target = "orders", source = "listOrderId")
 	@Mapping(target = "exchangeRate", source = "exchangeRatId")
 	@Mapping(target = "discount", source = "discountId")
+	@Mapping(target = "createdBy", ignore = true)
+	@Mapping(target = "createdDate", ignore = true)
+	@Mapping(target = "modifiedBy", ignore = true)
+	@Mapping(target = "modifiedDate", ignore = true)
 	Payment toPayment(PaymentDto paymentDto);
 	
 	@Mapping(target = "listOrderId", expression = "java(payment.getOrders().stream().map( p -> p.getId()).toList())")

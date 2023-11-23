@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.mapper.MaterialCategoryMapper;
 import com.coffee.system.model.dto.MaterialCategoryDto;
-import com.coffee.system.model.system.MaterialCategory;
+import com.coffee.system.model.entity.MaterialCategory;
 import com.coffee.system.repository.MaterialCategoryRepository;
 import com.coffee.system.service.MaterialCategoryService;
 import com.coffee.system.util.ErrorUtil;

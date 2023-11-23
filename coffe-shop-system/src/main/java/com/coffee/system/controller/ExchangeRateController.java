@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coffee.system.model.dto.ExchangeRateDto;
-import com.coffee.system.model.system.ExchangeRate;
+import com.coffee.system.model.entity.ExchangeRate;
 import com.coffee.system.service.ExchangeRateService;
 
 @RestController
-@RequestMapping("/exchange_rate")
+@RequestMapping("/exchange-rate")
 public class ExchangeRateController {
 	@Autowired
 	private ExchangeRateService ExchangeRateService;

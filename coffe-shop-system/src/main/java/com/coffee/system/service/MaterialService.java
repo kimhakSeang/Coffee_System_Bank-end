@@ -3,7 +3,7 @@ package com.coffee.system.service;
 import java.util.List;
 
 import com.coffee.system.model.dto.MaterialDto;
-import com.coffee.system.model.system.Material;
+import com.coffee.system.model.entity.Material;
 
 public interface MaterialService {
 	

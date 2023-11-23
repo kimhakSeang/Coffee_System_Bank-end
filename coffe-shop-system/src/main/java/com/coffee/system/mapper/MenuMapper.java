@@ -8,8 +8,8 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
 import com.coffee.system.model.dto.MenuDto;
-import com.coffee.system.model.system.Item;
-import com.coffee.system.model.system.Menu;
+import com.coffee.system.model.entity.Item;
+import com.coffee.system.model.entity.Menu;
 import com.coffee.system.service.CategoryService;
 import com.coffee.system.service.ItemService;
 
@@ -20,6 +20,10 @@ public interface MenuMapper {
 	
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "items", source = "itemId")
+	@Mapping(target = "createdBy", ignore = true)
+	@Mapping(target = "createdDate", ignore = true)
+	@Mapping(target = "modifiedBy", ignore = true)
+	@Mapping(target = "modifiedDate", ignore = true)
 	Menu toMenu(MenuDto MenuDto);
 	
 	@Mapping(target = "itemId", expression = "java(toListItem(menu.getItems()))")

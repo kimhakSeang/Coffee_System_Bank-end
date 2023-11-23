@@ -3,7 +3,7 @@ package com.coffee.system.service;
 import java.util.List;
 
 import com.coffee.system.model.dto.PaymentDto;
-import com.coffee.system.model.system.Payment;
+import com.coffee.system.model.entity.Payment;
 
 public interface PaymentService {
 

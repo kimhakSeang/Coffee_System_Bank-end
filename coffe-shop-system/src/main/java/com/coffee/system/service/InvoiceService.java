@@ -3,7 +3,7 @@ package com.coffee.system.service;
 import java.util.List;
 
 import com.coffee.system.model.dto.InvoiceDto;
-import com.coffee.system.model.system.Invoice;
+import com.coffee.system.model.entity.Invoice;
 
 public interface InvoiceService {
 

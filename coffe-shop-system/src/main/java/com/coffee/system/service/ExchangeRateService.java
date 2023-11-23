@@ -3,7 +3,7 @@ package com.coffee.system.service;
 import java.util.List;
 
 import com.coffee.system.model.dto.ExchangeRateDto;
-import com.coffee.system.model.system.ExchangeRate;
+import com.coffee.system.model.entity.ExchangeRate;
 
 public interface ExchangeRateService {
 

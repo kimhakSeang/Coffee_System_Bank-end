@@ -2,8 +2,8 @@ package com.coffee.system.service;
 
 import java.util.List;
 
+import com.coffee.system.config.security.model.Role;
 import com.coffee.system.model.dto.RoleDto;
-import com.coffee.system.model.user.Role;
 
 public interface RoleService {
 	

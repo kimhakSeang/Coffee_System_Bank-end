@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coffee.system.model.dto.DiscountDto;
-import com.coffee.system.model.system.Discount;
+import com.coffee.system.model.entity.Discount;
 import com.coffee.system.service.DiscountService;
 
 @RestController

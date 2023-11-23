@@ -2,9 +2,11 @@ package com.coffee.system.model.dto;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class UserDto {
 	private String userFirstName;
 	private String userLastName;
@@ -16,4 +18,5 @@ public class UserDto {
 	private Date leaveDate;
 	private String workYN;
 	private String loation;
+	private String photoLink;
 }

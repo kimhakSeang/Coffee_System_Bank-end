@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coffee.system.model.dto.MaterialDto;
-import com.coffee.system.model.system.Material;
+import com.coffee.system.model.entity.Material;
 import com.coffee.system.service.MaterialService;
 
 
 @RestController
-@RequestMapping("/Material")
+@RequestMapping("/material")
 public class MaterialController {
 	@Autowired
 	private MaterialService MaterialService;

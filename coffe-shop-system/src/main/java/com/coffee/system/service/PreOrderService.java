@@ -3,7 +3,7 @@ package com.coffee.system.service;
 import java.util.List;
 
 import com.coffee.system.model.dto.PreOrderDto;
-import com.coffee.system.model.system.PreOrder;
+import com.coffee.system.model.entity.PreOrder;
 
 public interface PreOrderService {
 
