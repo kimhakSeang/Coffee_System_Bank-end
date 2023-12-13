@@ -21,11 +21,13 @@ public class RoleServiceImpl implements RoleService{
     
 	@Override
 	public Role getRoleById(int id){
-		Optional<Role> Role= RoleRepository.findById(id);
-		if(Role.isEmpty()) {
+		Optional<Role> role= RoleRepository.findById(id);
+		if(role.isEmpty()) {
+			System.out.println(">>>>>>>>>> Role Id:"+"Role's id("+id+") not found!");
 			throw new RuntimeExceptionImpl(ErrorUtil.NOT_FOUND,"Role's id("+id+") not found!");
 		}
-		return Role.get();
+		System.out.println(">>>>>>>>>> Role Id:"+role.get().getId());
+		return role.get();
 	}
 	
 	@Override

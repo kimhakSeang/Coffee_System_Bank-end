@@ -17,6 +17,8 @@ import com.coffee.system.util.ErrorUtil;
 public class InvoiceServiceImpl implements InvoiceService{
 	@Autowired
     private InvoiceRepository invoiceRepository;
+    @Autowired
+    private InvoiceMapper invoiceMapper;
     
 	@Override
 	public Invoice getInvoiceById(int id){
@@ -34,7 +36,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 
 	@Override
 	public Invoice insertInvoice(InvoiceDto invoiceDto) {
-		Invoice invoice = InvoiceMapper.INSTANCE.toInvoice(invoiceDto);
+		Invoice invoice = invoiceMapper.toInvoice(invoiceDto);
 		invoiceRepository.save(invoice);
 		return invoice;
 	}
@@ -42,7 +44,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 	@Override
 	public Invoice updateInvoice(int id, InvoiceDto invoiceDto) {
 		getInvoiceById(id);
-		Invoice invoice = InvoiceMapper.INSTANCE.toInvoice(invoiceDto);
+		Invoice invoice = invoiceMapper.toInvoice(invoiceDto);
 		invoice.setId(id);
 		return invoiceRepository.save(invoice);
 	}

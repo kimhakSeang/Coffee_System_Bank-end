@@ -17,6 +17,8 @@ import com.coffee.system.util.ErrorUtil;
 public class UserServiceImpl implements UserService{
 	@Autowired
     private UserRepository userRepository;
+	@Autowired
+	private UserMapper userMapper;
     
 	@Override
 	public User getUserById(int id){
@@ -28,13 +30,23 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+	public Optional<User> getUserByEmail(String email){
+		return userRepository.findUserByEmail(email);
+//		if(User.isEmpty()) {
+//			throw new RuntimeExceptionImpl(ErrorUtil.NOT_FOUND,"User's email("+email+") not found!");
+//		}
+//		return User.get();
+	}
+	
+	@Override
 	public List<User> getUserList() {
 		return userRepository.findAll();
 	}
 
 	@Override
 	public User insertUser(UserDto UserDto) {
-		User User = UserMapper.INSTANCE.toUser(UserDto);
+		
+		User User = userMapper.toUser(UserDto);
 		userRepository.save(User);
 		return User;
 	}
@@ -42,7 +54,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User updateUser(int id, UserDto UserDto) {
 		getUserById(id);
-		User User = UserMapper.INSTANCE.toUser(UserDto);
+		User User = userMapper.toUser(UserDto);
 		User.setId(id);
 		return userRepository.save(User);
 	}

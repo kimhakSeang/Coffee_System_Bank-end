@@ -11,7 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper=false)
 @Data
 @Entity
 @Table(name = "pre_order")
@@ -26,5 +28,7 @@ public class PreOrder extends SysAuditing{
 	
 	@ManyToMany
 	private List<Item> items;
+	
+	private PreOrderStatus orderStatus;
 	
 }

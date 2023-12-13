@@ -17,6 +17,8 @@ import com.coffee.system.config.security.mapper.EmailMapper;
 import com.coffee.system.config.security.model.EmailToken;
 import com.coffee.system.config.security.repository.EmailRepository;
 import com.coffee.system.config.security.service.EmailService;
+import com.coffee.system.exception.RuntimeExceptionImpl;
+import com.coffee.system.util.ErrorUtil;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -44,7 +46,7 @@ public class EmailServiceImpl implements EmailService {
 		
 		EmailToken emailToken = emailMapper.toEmailToken(emailTokenDto);
 		emailRepository.save(emailToken);
-		
+		System.out.println(">>>>>>>>>> Done register Email!");
 		return token;
 	}
 
@@ -75,7 +77,7 @@ public class EmailServiceImpl implements EmailService {
             String html = templateEngine.process(template, context);
             
             helper.setText(html, true);
-            helper.setTo(emailToken.getUserLogin().getEmail());
+            helper.setTo(emailToken.getUserLogin().getUser().getEmail());
             helper.setSubject("Confirm your email");
             helper.setFrom("videotrainingcourse@gmail.com");
             
@@ -104,9 +106,11 @@ public class EmailServiceImpl implements EmailService {
 
 	@Override
 	public boolean isVerify(String email) {
+		
 		Optional<EmailToken> getEmial = emailRepository.findEmailTokenByEmail(email);
+		
 		if(getEmial.isEmpty() || !getEmial.get().isEnable()) {
-			throw new RuntimeException("Email not yet verify!");
+			throw new RuntimeExceptionImpl(ErrorUtil.BAD_REQUEST,"Email not yet verify!");
 		}
 		return true;
 	}

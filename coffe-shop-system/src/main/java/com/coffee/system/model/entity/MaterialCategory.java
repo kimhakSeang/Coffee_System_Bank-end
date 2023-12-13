@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "matrl_category")
+@Table(name = "material_category")
 public class MaterialCategory extends SysAuditing{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

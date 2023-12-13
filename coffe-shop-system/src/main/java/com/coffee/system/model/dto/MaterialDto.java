@@ -7,5 +7,4 @@ public class MaterialDto {
 	
 	private String name;
 	private Integer materialCategoryId;
-	private long price;
 }
