@@ -13,7 +13,7 @@ public interface EmailRepository  extends JpaRepository<EmailToken, Integer> {
 	
 	Optional<EmailToken> findEmailTokenByToken(String token);
 	@Query(value=  "SELECT M.* 						\r\n"
-				 + "  FROM GMAIL M					\r\n"
+				 + "  FROM TOKEN M					\r\n"
 				 + " INNER JOIN USER_LOGIN UL		\r\n"
 				 + "    ON M.USER_LOGIN_ID = UL.id	\r\n"
 				 + " WHERE UL.email = :email			"

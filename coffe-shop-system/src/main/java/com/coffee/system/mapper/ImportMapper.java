@@ -15,7 +15,7 @@ public interface ImportMapper {
 	ImportMapper INSTANCE = Mappers.getMapper(ImportMapper.class);
 	
 	@Mapping( target = "id", ignore = true)
-	@Mapping(target = "materials", source = "materialsId")
+	@Mapping(target = "material", source = "materialsId")
 	@Mapping(target = "user", source = "userId")
 	@Mapping(target = "createdBy", ignore = true)
 	@Mapping(target = "createdDate", ignore = true)

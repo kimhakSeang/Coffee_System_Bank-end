@@ -15,19 +15,19 @@ import lombok.Data;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class SysAuditing {
-	@Column(name = "created_date", nullable = false, updatable = false)
+	@Column(name = "created_date", nullable = true, updatable = false)
     @CreatedDate
     private long createdDate;
 
-    @Column(name = "modified_date")
+    @Column(name = "modified_date",nullable = true)
     @LastModifiedDate
     private long modifiedDate;
 
-	@Column(name = "created_by", /* nullable = false, */ updatable = false)
+	@Column(name = "created_by",  nullable = true)
     @CreatedBy
     private String createdBy;
     
-	@Column(name = "modified_by" /*nullable = false*/)
+	@Column(name = "modified_by" ,nullable = true)
     @LastModifiedBy
     private String modifiedBy;
 }

@@ -13,19 +13,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLoginDto {
-	private Integer userId;
-    private String username;
+//	private Integer id;
+//	private Date loginDate;
+//    private String username;
   	private String password;
-  	private Integer roleId;
-  	private boolean accountNonExpired;
-  	private boolean accountNonLocked;
-  	private boolean credentialsNonExpired;
-  	private boolean enabled;
+//  	private Integer roleId;
+//  	private boolean accountNonExpired;
+//  	private boolean accountNonLocked;
+//  	private boolean credentialsNonExpired;
+//  	private boolean enabled;
 	private String email;
-	private Integer tell;
-	private Date dob;
-	private Gender gender;
-	private String photoLink;
-	private String statusYN;
-	private Set<Integer> courseId; 
+//	private Integer tell;
+//	private Date dob;
+//	private Gender gender;
+//	private String photoLink;
+//	private String statusYN;
+//	private Set<Integer> courseId;
 }

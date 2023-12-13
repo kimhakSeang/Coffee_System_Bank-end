@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class ExchangeRateDto {
-	private Date date;
+	private Date exchgDate;
 	private CurrencyEnum currencyEnum;
 	private double rate;
 }

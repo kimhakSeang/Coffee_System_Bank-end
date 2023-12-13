@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "gmail")
+@Table(name = "token")
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmailToken {
@@ -32,7 +32,7 @@ public class EmailToken {
 	private boolean enable;
 	
 	@ManyToOne(optional = false)
-	private UserRequestLogin userLogin;
+	private RequestLogin userLogin;
 	
 	@Column(name = "created_at", nullable = false)
 	private LocalDateTime createdAt;

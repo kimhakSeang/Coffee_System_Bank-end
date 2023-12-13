@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ResponseError {
-	private String statusCode;
+	private String sysErrCode;
 	private String status;
 	private String errCode;
 	private String message;

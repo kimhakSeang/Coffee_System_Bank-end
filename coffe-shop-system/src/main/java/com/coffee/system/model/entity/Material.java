@@ -1,5 +1,7 @@
 package com.coffee.system.model.entity;
 
+import java.util.Date;
+
 import com.coffee.system.config.SysAuditing;
 
 import jakarta.persistence.Entity;
@@ -23,5 +25,4 @@ public class Material extends SysAuditing{
 	
 	private String name;
 	
-	private long price;
 }

@@ -17,6 +17,8 @@ import com.coffee.system.util.ErrorUtil;
 public class PaymentServiceImpl implements PaymentService{
 	@Autowired
     private PaymentRepository paymentRepository;
+    @Autowired
+    private PaymentMapper paymentMapper;
     
 	@Override
 	public Payment getPaymentById(int id){
@@ -34,7 +36,7 @@ public class PaymentServiceImpl implements PaymentService{
 
 	@Override
 	public Payment insertPayment(PaymentDto paymentDto) {
-		Payment payment = PaymentMapper.INSTANCE.toPayment(paymentDto);
+		Payment payment = paymentMapper.toPayment(paymentDto);
 		paymentRepository.save(payment);
 		return payment;
 	}
@@ -42,7 +44,7 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public Payment updatePayment(int id, PaymentDto paymentDto) {
 		getPaymentById(id);
-		Payment payment = PaymentMapper.INSTANCE.toPayment(paymentDto);
+		Payment payment = paymentMapper.toPayment(paymentDto);
 		payment.setId(id);
 		return paymentRepository.save(payment);
 	}

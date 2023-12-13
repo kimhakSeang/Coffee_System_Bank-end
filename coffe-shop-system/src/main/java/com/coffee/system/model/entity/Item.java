@@ -22,8 +22,14 @@ public class Item extends SysAuditing{
 	private String name;
 	
 	@ManyToOne
+	private Discount discount;
+	
+	@ManyToOne
 	private Category category;
 	
 	private long price;
 	
+	private long sugar;
+	
+	private ItemType type;
 }

@@ -1,7 +1,6 @@
 package com.coffee.system.model.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import com.coffee.system.config.SysAuditing;
 import com.coffee.system.config.security.model.User;
@@ -12,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -24,13 +24,17 @@ public class Import extends SysAuditing{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToMany
-	private List<Material> materials;
+	@ManyToOne
+	private Material material;
 	
 	@ManyToOne
-	private User user;
+	private User user;	
+
+	private long price;
 	
-	private Date impDate;
+	private Date importDate;
+	
+	private int count;
 	
 	private long totalAmount; 
 	

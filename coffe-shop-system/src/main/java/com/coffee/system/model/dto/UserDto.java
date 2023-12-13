@@ -13,7 +13,7 @@ public class UserDto {
 	private String email;
 	private String password;
 	private String phoneNumber;
-	private Integer roleId;
+	private int roleId;
 	private Date joinDate;
 	private Date leaveDate;
 	private String workYN;
