@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,9 +20,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.coffee.system.config.security.service.EmailService;
-import com.coffee.system.config.security.service.jwt.JwtAuthTokenVerify;
-import com.coffee.system.config.security.service.jwt.UsernamePasswordJwtFilter;
+import com.coffee.system.config.security.jwt.JwtAuthTokenVerify;
+import com.coffee.system.config.security.jwt.UsernamePasswordJwtFilter;
+import com.coffee.system.config.security.service.TokenService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,11 +33,10 @@ public class SecurityConfig {
 	private final UserDetailsService userDetailsService;
 	private final PasswordEncoder passwordEncoder;
 	private final AuthenticationConfiguration authenticationConfiguration;
-	private final EmailService emailService;
+	private final TokenService emailService;
 	
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    	
     	
     	 http.cors(t -> t.disable());
     	 http.csrf(csrf->csrf.disable());
@@ -47,6 +45,7 @@ public class SecurityConfig {
     	  .authorizeHttpRequests(auth -> {
     		  auth.anyRequest().permitAll();
     	  }
+    	  
 //    	  auth.requestMatchers(HttpMethod.POST,"/user_login").permitAll();
 //    		  .requestMatchers("/swagger-ui/index.html").permitAll()
 //	          .requestMatchers("/email/confirm").permitAll()
@@ -57,11 +56,11 @@ public class SecurityConfig {
 //	          .anyRequest().authenticated()
 //    	  auth.an
 	          );
-    	 http.addFilter(new UsernamePasswordJwtFilter(authenticationManager(authenticationConfiguration), emailService));
-    	 http.addFilterAfter( new JwtAuthTokenVerify(userDetailsService),UsernamePasswordJwtFilter.class );
-    	 http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+    	 
+    	 http.addFilter(new UsernamePasswordJwtFilter(authenticationManager(authenticationConfiguration), emailService))
+    	     .addFilterAfter( new JwtAuthTokenVerify(userDetailsService),UsernamePasswordJwtFilter.class )
+    	     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
          
-	
     	return http.build();
     }
 	

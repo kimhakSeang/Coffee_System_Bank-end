@@ -50,5 +50,9 @@ public class RequestLoginController {
 	public ResponseEntity<?> registerUserLogin(@RequestBody UserLoginDto userLoginDto){
 		return ResponseEntity.ok(userLoginService.register(userLoginDto));
 	}
+	@GetMapping("/user/{id}")
+	public ResponseEntity<?> registerUserLogin(@PathVariable int id){
+		return ResponseEntity.ok(userLoginService.getUserRequestLoginByUserId(id));
+	}
 }
 

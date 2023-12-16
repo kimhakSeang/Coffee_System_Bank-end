@@ -1,26 +1,25 @@
 package com.coffee.system.config.security.controller;
 
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.coffee.system.config.security.service.EmailService;
+import com.coffee.system.config.security.service.TokenService;
 
 import lombok.RequiredArgsConstructor;
 
-@RestController
+@Controller
 @RequestMapping("/email")
 @RequiredArgsConstructor
-public class EmailController {
-	private final EmailService emailService;
+public class TokenController {
+	private final TokenService emailService;
 	
 	@GetMapping("/confirm")
-	public ResponseEntity<?> confirmEmail(@RequestParam(value = "token") String token ){
+	public String confirmEmail(@RequestParam(value = "token") String token ){
 		emailService.confirm(token);
-		return ResponseEntity.ok("Confirmed");
+		return "confirmed_form.html";
 	}
 
 }

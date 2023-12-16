@@ -14,7 +14,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "user_login")
+@Table(name = "login")
 public class RequestLogin {
 
     @Id
@@ -26,8 +26,7 @@ public class RequestLogin {
 
     @OneToOne
     private User user;
-    
-    private String token;
+
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;

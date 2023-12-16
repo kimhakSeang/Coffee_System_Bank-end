@@ -1,4 +1,4 @@
-package com.coffee.system.config.security.service.jwt;
+package com.coffee.system.config.security.jwt;
 
 
 import java.security.Key;

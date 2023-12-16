@@ -1,4 +1,4 @@
-package com.coffee.system.config.security.service.jwt;
+package com.coffee.system.config.security.jwt;
 
 import java.io.IOException;
 
@@ -37,7 +37,6 @@ public class JwtAuthTokenVerify extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)throws ServletException, IOException {
 		
 		final String authHeader = request.getHeader("Authorization");
-		System.out.println(">>>>>>>>>>>>>>>> doFilterInternal Token:"+authHeader);
 		
 		if(authHeader == null || !authHeader.startsWith("Bearer ")) {
 			filterChain.doFilter(request, response);
@@ -46,7 +45,6 @@ public class JwtAuthTokenVerify extends OncePerRequestFilter {
 		}
 		String token = authHeader.replace("Bearer ", "");
 		
-		System.out.println(">>>>>>>>>>>> doFilterInternal token:"+token);
         try {
         	Claims body = jwtService.extractAllCliams(token);
 			String email = body.getSubject();
@@ -67,7 +65,7 @@ public class JwtAuthTokenVerify extends OncePerRequestFilter {
 					 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 				 }
 			}
-			System.out.println(">>>>>>>>>>>> Request:"+request+", Response:"+response);
+
 			filterChain.doFilter(request, response);
         }catch(Exception ex) {
         	throw new RuntimeException(ex);
