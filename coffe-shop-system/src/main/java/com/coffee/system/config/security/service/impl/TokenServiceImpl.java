@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
-import com.coffee.system.config.security.dto.EmailTokenDto;
-import com.coffee.system.config.security.mapper.EmailMapper;
-import com.coffee.system.config.security.model.EmailToken;
-import com.coffee.system.config.security.repository.EmailRepository;
-import com.coffee.system.config.security.service.EmailService;
+import com.coffee.system.config.security.dto.TokenDto;
+import com.coffee.system.config.security.mapper.TokenMapper;
+import com.coffee.system.config.security.model.Token;
+import com.coffee.system.config.security.repository.TokenRepository;
+import com.coffee.system.config.security.service.TokenService;
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.util.ErrorUtil;
 
@@ -28,23 +28,23 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class EmailServiceImpl implements EmailService {
-	private final EmailRepository emailRepository;
+public class TokenServiceImpl implements TokenService {
+	private final TokenRepository emailRepository;
     private final JavaMailSender mailSender;
-    private final EmailMapper emailMapper;
+    private final TokenMapper emailMapper;
     private final SpringTemplateEngine templateEngine;
     
     private String template = "email_form.html";
     
 	@Override
-	public String signUp(EmailTokenDto emailTokenDto) {
+	public String signUp(TokenDto emailTokenDto) {
 		String token = UUID.randomUUID().toString();
 		emailTokenDto.setEnable(false);
 		emailTokenDto.setCreatedAt( LocalDateTime.now());
 		emailTokenDto.setExpiredAt( LocalDateTime.now().plusMinutes(15));
 		emailTokenDto.setToken(token);
 		
-		EmailToken emailToken = emailMapper.toEmailToken(emailTokenDto);
+		Token emailToken = emailMapper.toEmailToken(emailTokenDto);
 		emailRepository.save(emailToken);
 		System.out.println(">>>>>>>>>> Done register Email!");
 		return token;
@@ -52,18 +52,18 @@ public class EmailServiceImpl implements EmailService {
 
 	@Override
 	public void confirm(String token) {
-		Optional<EmailToken> emailToken = emailRepository.findEmailTokenByToken(token);
+		Optional<Token> emailToken = emailRepository.findEmailTokenByToken(token);
 		if(emailToken.isEmpty()) {
 			throw new RuntimeException("Invalid token!");
 		}
-		EmailToken emailverify = emailToken.get();
+		Token emailverify = emailToken.get();
 		emailverify.setEnable(true);
 		emailverify.setConfirmedAt(LocalDateTime.now());
 		emailRepository.save(emailverify);
 	}
 
 	@Override
-	public void sender(EmailToken emailToken, String subject) {
+	public void sender(Token emailToken, String subject) {
 		try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             
@@ -77,9 +77,9 @@ public class EmailServiceImpl implements EmailService {
             String html = templateEngine.process(template, context);
             
             helper.setText(html, true);
-            helper.setTo(emailToken.getUserLogin().getUser().getEmail());
-            helper.setSubject("Confirm your email");
-            helper.setFrom("videotrainingcourse@gmail.com");
+            helper.setTo(subject);
+            helper.setSubject("Confirm login");
+            helper.setFrom("coffe.shop.niche@gmail.com");
             
             
             mailSender.send(mimeMessage);
@@ -91,8 +91,8 @@ public class EmailServiceImpl implements EmailService {
 	}
 	
 	@Override
-	public EmailToken findEmailByToken(String token) {
-		 Optional<EmailToken> findEmailByToken = emailRepository.findEmailTokenByToken(token);
+	public Token findEmailByToken(String token) {
+		 Optional<Token> findEmailByToken = emailRepository.findEmailTokenByToken(token);
 		 if(findEmailByToken.isEmpty()) {
 			 throw new RuntimeException("This token is not exist!");
 		 }
@@ -100,19 +100,27 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public List<EmailToken> getAll() {
+	public List<Token> getAll() {
 		return emailRepository.findAll();
 	}
 
 	@Override
 	public boolean isVerify(String email) {
 		
-		Optional<EmailToken> getEmial = emailRepository.findEmailTokenByEmail(email);
+		Optional<Token> getEmial = emailRepository.findEmailTokenByEmail(email);
 		
-		if(getEmial.isEmpty() || !getEmial.get().isEnable()) {
+		if(getEmial.isEmpty() ) {
+			throw new RuntimeExceptionImpl(ErrorUtil.BAD_REQUEST,"Email not found!");
+		}
+		if(!getEmial.get().isEnable()) {
 			throw new RuntimeExceptionImpl(ErrorUtil.BAD_REQUEST,"Email not yet verify!");
 		}
 		return true;
+	}
+
+	@Override
+	public Optional<Token> getEmailTokenByEmail(String email) {
+		return emailRepository.findEmailTokenByEmail(email);
 	}
 
 }

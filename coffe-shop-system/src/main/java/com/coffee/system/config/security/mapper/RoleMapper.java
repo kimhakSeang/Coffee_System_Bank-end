@@ -1,4 +1,4 @@
-package com.coffee.system.mapper;
+package com.coffee.system.config.security.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -11,7 +11,7 @@ import com.coffee.system.model.dto.RoleDto;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses= {UserPermissionService.class})
 public interface RoleMapper {
-	RoleMapper INSTANCE = Mappers.getMapper(RoleMapper.class);
+//	RoleMapper INSTANCE = Mappers.getMapper(RoleMapper.class);
 	
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "createdBy", ignore = true)

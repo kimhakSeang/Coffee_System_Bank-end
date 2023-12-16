@@ -1,4 +1,4 @@
-package com.coffee.system.repository;
+package com.coffee.system.config.security.repository;
 
 import java.util.Optional;
 

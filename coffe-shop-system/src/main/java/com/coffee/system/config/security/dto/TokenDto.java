@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmailTokenDto {
+public class TokenDto {
 
 	private String token;
 	private boolean enable;
@@ -19,8 +19,4 @@ public class EmailTokenDto {
 	private LocalDateTime createdAt;
 	private LocalDateTime expiredAt;
 	private LocalDateTime confirmedAt;
-	
-	EmailTokenDto(int userId){
-		this.userId = userId;
-	}
 }

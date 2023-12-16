@@ -2,6 +2,8 @@ package com.coffee.system.config.security.model;
 
 import java.util.Date;
 
+import com.coffee.system.config.SysAuditing;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends SysAuditing{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

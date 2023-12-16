@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 import com.coffee.system.config.security.dto.UserLoginDto;
 import com.coffee.system.config.security.mapper.UserLoginMapper;
 import com.coffee.system.config.security.model.RequestLogin;
+import com.coffee.system.config.security.model.User;
+import com.coffee.system.config.security.model.UserLogin;
 import com.coffee.system.config.security.repository.UserLoginRepository;
 import com.coffee.system.config.security.service.UserLoginService;
+import com.coffee.system.config.security.service.UserService;
 import com.coffee.system.exception.RuntimeExceptionImpl;
 import com.coffee.system.util.ErrorUtil;
 
@@ -22,60 +25,19 @@ import lombok.RequiredArgsConstructor;
 public class UserRequestLoginServiceImpl implements UserLoginService{
     private final UserLoginRepository userLoginRepository;
     private final UserLoginMapper userLoginMapper;
-    private final PasswordEncoder encoder;
+    private final UserService userService;
+    
     
 	@Override
 	public RequestLogin register( UserLoginDto userLoginDto) {
-//		userLoginDto.setAccountNonExpired(true);
-//		userLoginDto.setAccountNonLocked(true);
-//		userLoginDto.setCredentialsNonExpired(true);
-//		userLoginDto.setEnabled(true);
-//		userLoginDto.setRoleId(1);
-		userLoginDto.setPassword(encoder.encode(userLoginDto.getPassword()));
+		
+		Optional<User> user = userService.getUserByEmail(userLoginDto.getEmail());
+		if(user.isEmpty()) {
+			throw new RuntimeExceptionImpl(ErrorUtil.NOT_FOUND, "Email not found!");
+		}
+		
 		RequestLogin userRequestLogin = userLoginMapper.toUserRequestLogin(userLoginDto);
-		
-		
-
-//
-//try {
-//	
-////	// Validate Email duplicate 
-////	Optional<EmailToken> checkEmail = emailService.getAll()
-////			   		.stream()
-////			   		.filter(u->u.getUserLogin().getEmail().equals(userLoginDto.getEmail()))
-////			   		.findFirst();
-////	if(checkEmail.isPresent()) {
-////		throw new RuntimeExceptionImpl(ErrorUtil.READY_EXIST, "Email is ready exist!!");
-////	}
-////	
-////	// Register User Login
-////	UserRequestLogin userRequestLogin = userLoginService.register(userLoginDto);
-////	UserDto userDto = userMapper.toUserDto(userRequestLogin.getUser());
-////	
-//	//TODO 
-//	// Register User
-////	userService.insertUser(userDto);
-//	// Check User Info
-////	Optional<User> userByEmail = userService.getUserByEmail(userDto.getEmail());
-////
-////	if(checkEmail.isPresent()) {
-////		throw new RuntimeExceptionImpl(ErrorUtil.READY_EXIST, "Email is ready exist!!");
-////	}
-////	
-//	// Email Sender
-////	String token = emailService.signUp(new EmailTokenDto("", false, userRequestLogin.getId(),null, null,null));
-////	EmailToken getEmailToken = emailService.findEmailByToken(token);
-////	emailService.sender(getEmailToken, userLoginDto.getUsername());
-////	
-////	System.out.println(">>>>>>>>>>>>>> Token:"+token);
-//	return ResponseEntity.ok("Register success!");
-//	
-//}catch(Exception ex) {
-//	throw ex;
-		
-		
-		
-		
+		userRequestLogin.setUser(user.get());
 		return userLoginRepository.save(userRequestLogin);
 	} 
 
@@ -112,6 +74,11 @@ public class UserRequestLoginServiceImpl implements UserLoginService{
 		RequestLogin userRequestLogin = getUserLogin.get();
 		userRequestLogin.setEnabled(false);
 		userLoginRepository.save(userRequestLogin);
+	}
+
+	@Override
+	public Optional<RequestLogin> getUserRequestLoginByUserId(int id) {
+		return userLoginRepository.findUserRequestLoginByUserId(id);
 	}
 	
 }

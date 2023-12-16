@@ -20,18 +20,19 @@ public class GlobalExceptionHandler {
 														, e.getErrUtil().getHttpStatus().getReasonPhrase()
 														, e.getErrUtil().getErrCode()
 														, e.getMessage());
-		return ResponseEntity.status(e.getErrUtil().getHttpStatus()).body(errorResponse);
+//		return ResponseEntity.status(e.getErrUtil().getHttpStatus()).body(errorResponse);
+		return ResponseEntity.ok(errorResponse);
 	}
 	
-//	@ExceptionHandler(value = { AuthenticationException.class })
-//	public ResponseEntity<?> doubleException(BadCredentialsException e) {
-//		ResponseError messageException = new ResponseError(  
-//				"500"
-//				, ErrorUtil.ERROR_TOKEN.getMessage()
-//				, ErrorUtil.ERROR_TOKEN.getErrCode()
-//				, e.getMessage());
-//		return ResponseEntity.ok(messageException);
-//	}
+	@ExceptionHandler(value = { AuthenticationException.class })
+	public ResponseEntity<?> doubleException(BadCredentialsException e) {
+		ResponseError messageException = new ResponseError(  
+				"500"
+				, ErrorUtil.ERROR_TOKEN.getMessage()
+				, ErrorUtil.ERROR_TOKEN.getErrCode()
+				, e.getMessage());
+		return ResponseEntity.ok(messageException);
+	}
 	
 	@ExceptionHandler(value = { SignatureException.class })
 	public ResponseEntity<?> doubleException(SignatureException e) {

@@ -2,6 +2,7 @@ package com.coffee.system.config.security.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import com.coffee.system.config.security.dto.UserLoginDto;
 import com.coffee.system.config.security.model.RequestLogin;
@@ -17,4 +18,6 @@ public interface UserLoginService {
 	RequestLogin getUserRequestLogin(int id);
 	
 	List<RequestLogin> getListUserLogin();
+	
+	Optional<RequestLogin> getUserRequestLoginByUserId(int id);
 }

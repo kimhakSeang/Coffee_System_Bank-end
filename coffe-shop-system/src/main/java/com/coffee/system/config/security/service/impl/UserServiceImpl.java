@@ -1,17 +1,21 @@
-package com.coffee.system.service.impl;
+package com.coffee.system.config.security.service.impl;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.coffee.system.config.security.dto.TokenDto;
+import com.coffee.system.config.security.mapper.UserMapper;
+import com.coffee.system.config.security.model.Token;
 import com.coffee.system.config.security.model.User;
+import com.coffee.system.config.security.repository.UserRepository;
+import com.coffee.system.config.security.service.TokenService;
+import com.coffee.system.config.security.service.UserService;
 import com.coffee.system.exception.RuntimeExceptionImpl;
-import com.coffee.system.mapper.UserMapper;
 import com.coffee.system.model.dto.UserDto;
-import com.coffee.system.repository.UserRepository;
-import com.coffee.system.service.UserService;
 import com.coffee.system.util.ErrorUtil;
 @Service
 public class UserServiceImpl implements UserService{
@@ -19,6 +23,8 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private PasswordEncoder encoder;
     
 	@Override
 	public User getUserById(int id){
@@ -31,8 +37,8 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public Optional<User> getUserByEmail(String email){
-		return userRepository.findUserByEmail(email);
-//		if(User.isEmpty()) {
+		return  userRepository.findUserByEmail(email);
+//		if(user.isEmpty()) {
 //			throw new RuntimeExceptionImpl(ErrorUtil.NOT_FOUND,"User's email("+email+") not found!");
 //		}
 //		return User.get();
@@ -44,11 +50,20 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User insertUser(UserDto UserDto) {
+	public User insertUser(UserDto userDto) {
+		userDto.setPassword(encoder.encode(userDto.getPassword()));
+		Optional<User> userByEmail = userRepository.findUserByEmail(userDto.getEmail());
 		
-		User User = userMapper.toUser(UserDto);
-		userRepository.save(User);
-		return User;
+		//Check Email
+		if(userByEmail.isPresent()) {
+			throw new RuntimeExceptionImpl(ErrorUtil.READY_EXIST, "Email is ready exist!!");
+		}
+		
+		//Register User
+		User user = userMapper.toUser(userDto);
+		userRepository.save(user);
+		
+		return user;
 	}
 
 	@Override

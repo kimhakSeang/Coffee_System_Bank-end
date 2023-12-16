@@ -3,13 +3,12 @@ package com.coffee.system.config.security.model;
 
 import java.time.LocalDateTime;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,10 +16,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "token")
+@Table(name = "TOKEN")
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmailToken {
+public class Token {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -31,8 +30,8 @@ public class EmailToken {
 	@Column(nullable = false)
 	private boolean enable;
 	
-	@ManyToOne(optional = false)
-	private RequestLogin userLogin;
+	@OneToOne(optional = false)
+	private User user;
 	
 	@Column(name = "created_at", nullable = false)
 	private LocalDateTime createdAt;

@@ -5,10 +5,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
+import com.coffee.system.config.security.service.UserService;
 import com.coffee.system.model.dto.ImportDto;
 import com.coffee.system.model.entity.Import;
 import com.coffee.system.service.MaterialService;
-import com.coffee.system.service.UserService;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {MaterialService.class, UserService.class})
 public interface ImportMapper {
